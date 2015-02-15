@@ -3,3 +3,5 @@
 
 proxy_env:
   nothing: here
+
+mapr_version: v4.0.2
