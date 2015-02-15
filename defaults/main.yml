@@ -1,7 +1,6 @@
 ---
 # defaults file for mapr-resourcemanager
 
-proxy_env:
-  nothing: here
+proxy_env: { }
 
 mapr_version: v4.0.2
