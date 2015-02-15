@@ -1,0 +1,6 @@
+---
+# defaults file for mapr-resourcemanager
+
+proxy_env:
+  http_proxy:
+  https_proxy:
