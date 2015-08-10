@@ -11,6 +11,7 @@
   command: service mapr-warden status
   register: warden_status
   failed_when: warden_status.rc not in (0,1)
+  changed_when: false
 
 - name: install a correct yarn-site.xml from template
   template: src=yarn-site.xml.j2 dest=/opt/mapr/hadoop/hadoop-2.4.1/etc/hadoop/yarn-site.xml backup=yes
@@ -20,6 +21,7 @@
 - name: find hadoop version
   shell: rpm -qa --queryformat '%{VERSION} %{RELEASE}' mapr-hadoop-core | awk '{ print substr($0,0,5) }'
   register: hadoop_version
+  changed_when: false
 
 - name: configure proxyuser groups
   hadoop_properties: file=/opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml name=hadoop.proxyuser.mapr.groups value=*
