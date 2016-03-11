@@ -51,7 +51,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.zk-address</name>
-    <value>{% for node in groups['zookeepers'] -%}{{ hostvars[node].ansible_fqdn }}:5181{% if not loop.last %},{% endif %}{% endfor %}</value>
+    <value>{% for node in groups['zookeeper'] -%}{{ hostvars[node].ansible_fqdn }}:5181{% if not loop.last %},{% endif %}{% endfor %}</value>
   </property>
 
 
