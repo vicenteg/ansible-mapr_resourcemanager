@@ -9,14 +9,6 @@
     - mapr-resourcemanager
   environment: proxy_env
 
-- name: check whether warden is running
-  command: service mapr-warden status
-  sudo: yes
-  sudo_user: root
-  register: warden_status
-  failed_when: warden_status.rc not in (0,1)
-  changed_when: false
-
 - name: install a correct yarn-site.xml from template
   template: src=yarn-site.xml.j2 dest=/opt/mapr/hadoop/hadoop-2.4.1/etc/hadoop/yarn-site.xml backup=yes
   sudo_user: root
