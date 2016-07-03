@@ -22,13 +22,21 @@
   changed_when: false
 
 - name: configure proxyuser groups
-  hadoop_properties: file=/opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml name=hadoop.proxyuser.mapr.groups value=*
+  hadoop_properties:
+    create: True
+    file: /opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml
+    name: hadoop.proxyuser.mapr.groups
+    value: "*"
   become: yes
   become_user: root
   when: secure_cluster is defined and secure_cluster == True
 
 - name: configure proxyuser hosts
-  hadoop_properties: file=/opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml name=hadoop.proxyuser.mapr.hosts value=*
+  hadoop_properties:
+    create: True
+    file: /opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml
+    name: hadoop.proxyuser.mapr.hosts
+    value: *
   become: yes
   become_user: root
   when: secure_cluster is defined and secure_cluster == True
