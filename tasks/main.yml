@@ -16,27 +16,3 @@
   register: install_yarn_site_xml
   when: mapr_version in ('v4.0.1')
 
-- name: find hadoop version
-  shell: rpm -qa --queryformat '%{VERSION} %{RELEASE}' mapr-hadoop-core | awk '{ print substr($0,0,5) }'
-  register: hadoop_version
-  changed_when: false
-
-- name: configure proxyuser groups
-  hadoop_properties:
-    create: True
-    file: /opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml
-    name: hadoop.proxyuser.mapr.groups
-    value: "*"
-  become: yes
-  become_user: root
-  when: secure_cluster is defined and secure_cluster == True
-
-- name: configure proxyuser hosts
-  hadoop_properties:
-    create: True
-    file: /opt/mapr/hadoop/hadoop-{{hadoop_version.stdout}}/etc/hadoop/core-site.xml
-    name: hadoop.proxyuser.mapr.hosts
-    value: "*"
-  become: yes
-  become_user: root
-  when: secure_cluster is defined and secure_cluster == True
