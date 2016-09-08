@@ -7,7 +7,6 @@
   become_user: root
   with_items:
     - mapr-resourcemanager
-  environment: '{{proxy_env}}'
 
 - name: install a correct yarn-site.xml from template
   template: src=yarn-site.xml.j2 dest=/opt/mapr/hadoop/hadoop-2.4.1/etc/hadoop/yarn-site.xml backup=yes
